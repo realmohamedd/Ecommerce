@@ -1,0 +1,92 @@
+
+  
+  .brand-card {
+    text-align: center;
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 5px;
+    // width: 150px;
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .brand-card:hover {
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+  }
+  
+  .brand-logo {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+  }
+  
+  .brand-name {
+    font-size: 16px;
+    color: #333;
+    margin-top: 10px;
+  }
+  
+.custom-modal{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 9999;
+  
+}
+
+
+.custom-modal-content {
+  position: relative;
+  max-width: 100vh;
+  max-height: 100vh;
+}
+.custom-modal-content img {
+  width: 100%;
+  height: auto;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 60px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+} 
+
+.modal-details {
+  margin-top: 20px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  font-size: 40px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-button:hover {
+  color: #22e64d;
+}
+
+.custom-modal-content {
+  position: relative;
+  max-width: 120%;
+  max-height: 50%;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+
+.btn-right {
+  float: right;
+}

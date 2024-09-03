@@ -1,0 +1,17 @@
+{
+    "navbar":{
+        "home":"Home",
+        "Products":"Products",
+        "Categories":"Categories",
+        "Brands":"Brands",
+        "WishList":"WishList",
+        "SignOut":"SignOut",
+        "lang":"lang"
+    },
+
+   "home":{
+        "Shop Popular Categories": "Shop Popular Categories",
+        "Popular Products":"Popular Products"
+        
+    }
+}

@@ -1,0 +1,38 @@
+<section class="bg-main-light rounded-4 shadow p-4 my-2 w-75 mx-auto">
+  <h1 class="h2 text-center">My Wishlist</h1>
+
+  <div *ngFor="let item of wishListDetails; let i = index" class="row mb-2 border-bottom ">
+    <div class="col-md-2">
+      <div>
+        <img [src]="item.imageCover" class="w-100" [alt]="item.title">
+      </div>
+    </div>
+
+    <div class="col-md-10 ">
+      <div class="mt-5">
+       <div>
+        <p> {{item.description}} </p>
+        <p class="m-0 text-main">{{ item.price | currency : "EGP"}}</p>
+       </div>
+        <div class="d-flex justify-content-between">
+            <div>
+                <button (click)="removeProduct(item.id)" class="text-danger cursor-pointer p-0 btn">
+                  <i class="fa-solid fa-trash"></i> Remove
+                </button>
+            </div>
+            <div>
+                <button  type="submit" class="btn-main " (click)="addCart(item._id)">
+                  Add to Cart
+                  
+                  @if (isLoading[item._id]) {
+                      <span><i class="fas fa-spi fa-spinner"></i></span>
+                  }
+                </button>
+            </div>
+        
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</section>

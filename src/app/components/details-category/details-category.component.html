@@ -1,0 +1,17 @@
+<section class="my-3">
+  <!-- Display Category Name -->
+  <h1 class="my-2 text-main"> {{ categoryName }} :</h1>
+
+  <!-- Display Subcategories -->
+  <div class="row g-3">
+    @for (subCat of detailsSubCatList; track subCat._id) {
+      <div class="col-md-3">
+        <div class="product p-2">
+          <div class="name">
+            <h2 [routerLink]="['/details', subCat._id]">{{ subCat.name }}</h2>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</section>

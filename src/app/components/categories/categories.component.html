@@ -1,0 +1,39 @@
+
+<!-- categories -->
+<h2>  Categories :</h2>
+<section class="my-2 container">
+    
+    <div class="row g-3">
+        
+            @for (category of categoryList(); track category._id) {
+                <div class="col-md-4">
+                    <div [routerLink]="['/detailsCategory' , category._id]" class="cursor-pointer product">
+                        <img [src]="category.image" height="250px" class=" w-100" [alt]="category.name">
+                        <h3 class="h6 text-main text-center"> {{category.name}}  </h3>
+                     </div>
+                </div>
+              }
+        
+    </div>
+    
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <p>categories works!</p>
+<p>Counter {{counter()}} </p>
+<p>userName: {{userName()}} </p>
+
+<button (click)="changeCounter()" class="btn btn-primary">counter</button>
+
+<button (click)="changeUserName()" class="btn btn-primary">username</button> -->

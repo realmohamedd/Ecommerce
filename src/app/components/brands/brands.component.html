@@ -1,0 +1,59 @@
+<section class="container my-4">
+    <h1 class="text-center text-main bold my-5 fw-bold">All Brands</h1>
+
+    <div class="row g-4">
+        @for (brand of brandsList; track brand._id) {
+            <div class="col-md-3 cursor-pointer" (click)="openModal(brand)">
+                <div class="brand-card">
+                    <img [src]="brand.image" [alt]="brand.name" class="brand-logo">
+                    <p class="brand-name"> {{brand.name}} </p>
+                  </div>
+            </div>
+        }
+    </div>
+
+    <!-- <div class="modal-content" *ngIf="selectedStore">
+        <button class="close-btn" (click)="closeModal()">&times;</button>
+        <div class="modal-body">
+            <div class="brand-info">
+                <h1 class="brand-title">{{selectedStore.name}}</h1>
+                <p class="brand-subtitle">lenovo</p>
+            </div>
+            <div class="brand-image">
+                <img [src]="selectedStore.image" alt="Lenovo Logo">
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="close-button" (click)="closeModal()">Close</button>
+        </div>
+    </div> -->
+    
+    
+      
+  
+    <div class="custom-modal mx-auto " *ngIf="selectedStore">
+        <div class="custom-modal-content  d-flex  justify-content-center">
+            <div class="">
+                <i class="fa-regular fa-circle-xmark close-button  " (click)="closeModal()"></i>
+
+               
+                
+                    <div class="d-flex align-items-center ">
+                        <div>
+                            <h3 class="text-main "> {{selectedStore.name}} </h3>
+                            <p> {{selectedStore.slug}} </p>
+                        </div>
+                        <div>
+                        <img [src]="selectedStore.image" alt="Full Image" class="img-fluid h-100 bg-danger">
+
+                        </div>
+                    </div>
+                    
+                    <button class="btn btn-main" (click)="closeModal()" style="float: right;">Close</button>
+
+                
+            </div>
+          
+        </div>
+      </div>
+</section>

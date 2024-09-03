@@ -1,0 +1,62 @@
+<!-- products -->
+<h2> Products :</h2>
+<section class="container">
+    
+
+    <input [(ngModel)]="text" type="search" class="form-control w-50 mx-auto my-4" placeholder="Search By Name">
+
+    <div class="row g-3">
+       
+        @for (product of productList() | search : text; track product.id) {
+            <div class="col-md-3">
+                <div class="product p-2 " >
+                  <div  >
+                    <img [routerLink]="['/details',product.id]" [src]="product.imageCover" class="w-100 cursor-pointer" [alt]="product.title">
+                    <h3 class="small text-main"> {{product.category.name}} </h3>
+                   <div class="d-flex justify-content-between">
+                    <div>
+                        <h4 class="h6"> {{product.title.split(" ").slice(0,2).join(" ")}} </h4>
+                    </div>
+                    <div>
+                        <i
+                        class="fa-heart fa-xl cursor-pointer"
+                        [ngClass]="{
+                          'fa-regular': !wishlist[product.id],
+                          'fa-solid text-danger': wishlist[product.id]
+                        }"
+                        (click)="toggleWishList(product.id)"
+                      ></i>
+                    </div>
+                   </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span>{{product.price}} EGP</span>
+    
+                        <div>
+                            @for (num of [1,2,3,4,5].slice(0 , product.ratingsAverage); track $index) {
+                                <span> <i class="fas fa-star rating-color"></i> </span>
+                            }
+                            @if (product.ratingsAverage % 1 !== 0) {
+                                <i class="fa-solid fa-star-half-stroke rating-color"></i>
+                            }
+                            
+    
+                            <span class="text-muted"> {{product.ratingsAverage}} </span>
+                        </div>
+                    </div>
+                  </div>
+
+                  <button  type="submit" class="btn-main w-100" (click)="addCart(product.id)">
+                    Add to Cart
+                    <!-- {{ isLoading[product._id] ? 'Loading...' : 'Add to Cart' }} -->
+                    @if (isLoading[product._id]) {
+                        <span><i class="fas fa-spi fa-spinner"></i></span>
+                    }
+                
+                </button>
+                    
+                </div>
+            </div>
+        }
+    </div>
+</section>

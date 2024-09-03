@@ -1,0 +1,15 @@
+{
+    "navbar":{
+        "home":"الرئيسه",
+        "Products":"المنتجات",
+        "Categories":"الاقسام",
+        "Brands":"العلامات التجارية",
+        "WishList":"قائمة الرغبات",
+        "SignOut":"تسجيل الخروج",
+        "lang":"ع"
+    },
+    "home":{
+        "Shop Popular Categories": " الاقسام المشهورة",
+        "Popular Products":"المنتجات المشهورة"
+    }
+}

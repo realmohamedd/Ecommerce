@@ -1,0 +1,101 @@
+<section class="bg-main-light shadow p-2 my-2 rounded-4">
+    <h1 class="h2 text-main">Register Now:</h1>
+
+    <form [formGroup]="registerForm" (ngSubmit)="registerSubmit()">
+
+        <!-- Name Input -->
+        <div class="my-2 position-relative">
+            <label for="name">Name</label>
+            <div class="input-wrapper">
+                <input [ngClass]="{
+                    'is-valid': !registerForm.get('name')?.errors && (registerForm.get('name')?.touched || registerForm.get('name')?.dirty),
+                    'is-invalid': registerForm.get('name')?.errors && (registerForm.get('name')?.touched || registerForm.get('name')?.dirty)
+                }"
+                formControlName="name" id="name" type="text" class="form-control">
+                <i class="fa fa-user input-icon-symbol"></i>
+            </div>
+            <div *ngIf="registerForm.get('name')?.errors && (registerForm.get('name')?.touched || registerForm.get('name')?.dirty)" class="alert alert-danger w-50 m-0">
+                <p *ngIf="registerForm.get('name')?.getError('required')" class="m-0">Name is required</p>
+                <p *ngIf="registerForm.get('name')?.getError('minlength')" class="m-0">Name should be more than 3 characters</p>
+                <p *ngIf="registerForm.get('name')?.getError('maxlength')" class="m-0">Name should be less than 20 characters</p>
+            </div>
+        </div>
+
+        <!-- Email Input -->
+        <div class="my-2 position-relative">
+            <label for="email">Email</label>
+            <div class="input-wrapper">
+                <input [ngClass]="{
+                    'is-valid': !registerForm.get('email')?.errors && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty),
+                    'is-invalid': registerForm.get('email')?.errors && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)
+                }"
+                formControlName="email" id="email" type="email" class="form-control">
+                <i class="fa fa-envelope input-icon-symbol"></i>
+            </div>
+            <div *ngIf="registerForm.get('email')?.errors && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)" class="alert alert-danger w-50 m-0">
+                <p *ngIf="registerForm.get('email')?.getError('required')" class="m-0">Email is required</p>
+                <p *ngIf="registerForm.get('email')?.getError('email')" class="m-0">Enter a valid email</p>
+            </div>
+        </div>
+
+        <!-- Password Input with Toggle Icon -->
+        <div class="my-2 position-relative">
+            <label for="pass">Password</label>
+            <div class="input-wrapper">
+                <input [type]="showPassword ? 'text' : 'password'"
+                [ngClass]="{
+                    'is-valid': !registerForm.get('password')?.errors && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty),
+                    'is-invalid': registerForm.get('password')?.errors && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)
+                }"
+                formControlName="password" id="pass" class="form-control">
+                <i class="fa fa-lock input-icon-symbol"></i>
+                <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'" (click)="togglePasswordVisibility()"></i>
+            </div>
+            <div *ngIf="registerForm.get('password')?.errors && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)" class="alert alert-danger w-50 m-0">
+                <p *ngIf="registerForm.get('password')?.getError('required')" class="m-0">Password is required</p>
+                <p *ngIf="registerForm.get('password')?.getError('pattern')" class="m-0">Enter a valid password</p>
+            </div>
+        </div>
+        
+
+        <!-- Confirm Password Input -->
+        <div class="my-2 position-relative">
+            <label for="rePass">Confirm Password</label>
+            <div class="input-wrapper">
+                <input [ngClass]="{
+                    'is-valid': !registerForm.getError('mismatch') && (registerForm.get('rePassword')?.touched || registerForm.get('rePassword')?.dirty),
+                    'is-invalid': registerForm.getError('mismatch') && (registerForm.get('rePassword')?.touched || registerForm.get('rePassword')?.dirty)
+                }"
+                formControlName="rePassword" id="rePass" type="password" class="form-control">
+                <i class="fa fa-lock input-icon-symbol"></i>
+                
+            </div>
+            <p *ngIf="registerForm.getError('mismatch') && (registerForm.get('rePassword')?.touched || registerForm.get('rePassword')?.dirty)" class="alert alert-danger w-50 m-0">Password confirmation is incorrect</p>
+        </div>
+
+        <!-- Phone Input -->
+        <div class="my-2 position-relative">
+            <label for="phone">Phone</label>
+            <div class="input-wrapper">
+                <input [ngClass]="{
+                    'is-valid': !registerForm.get('phone')?.errors && (registerForm.get('phone')?.touched || registerForm.get('phone')?.dirty),
+                    'is-invalid': registerForm.get('phone')?.errors && (registerForm.get('phone')?.touched || registerForm.get('phone')?.dirty)
+                }"
+                formControlName="phone" id="phone" type="tel" class="form-control">
+                <i class="fa fa-phone input-icon-symbol"></i>
+            </div>
+            <div *ngIf="registerForm.get('phone')?.errors && (registerForm.get('phone')?.touched || registerForm.get('phone')?.dirty)" class="alert alert-danger w-50 m-0">
+                <p *ngIf="registerForm.get('phone')?.getError('required')" class="m-0">Phone is required</p>
+                <p *ngIf="registerForm.get('phone')?.getError('pattern')" class="m-0">Enter a valid phone number</p>
+            </div>
+        </div>
+
+        <button type="submit" class="btn-main ms-auto d-block">
+            Register
+            <span *ngIf="isLoading"><i class="fas fa-spinner fa-spin"></i></span>
+        </button>
+
+        <p *ngIf="msgError" class="alert alert-danger w-50 m-0">{{ msgError }}</p>
+        <p *ngIf="msgSuccess" class="text-center text-success">Success</p>
+    </form>
+</section>
