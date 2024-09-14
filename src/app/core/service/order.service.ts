@@ -12,10 +12,10 @@ export class OrderService {
 
   myHeaders:any={token: localStorage.getItem('userToken')}
 
-
+  url = window.location.origin;
 
   checkOut(idCart:string|null, shippingDetails:object):Observable<any>{
-    return this._HttpClient.post(`${environment.baseUrl}/api/v1/orders/checkout-session/${idCart}?url=${environment.urlServer}`,
+    return this._HttpClient.post(`${environment.baseUrl}/api/v1/orders/checkout-session/${idCart}?url=${this.url}`,
       {
         "shippingAddress":shippingDetails
     },

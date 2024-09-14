@@ -1,6 +1,6 @@
 <!-- products -->
-<h2> Products :</h2>
-<section class="container">
+<h2>All Products :</h2>
+<section class="">
     
 
     <input [(ngModel)]="text" type="search" class="form-control w-50 mx-auto my-4" placeholder="Search By Name">
@@ -8,7 +8,7 @@
     <div class="row g-3">
        
         @for (product of productList() | search : text; track product.id) {
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="product p-2 " >
                   <div  >
                     <img [routerLink]="['/details',product.id]" [src]="product.imageCover" class="w-100 cursor-pointer" [alt]="product.title">

@@ -47,11 +47,11 @@ export class HomeComponent implements OnInit, OnDestroy{
     pullDrag: false,
     rtl:true,
     autoplay:true, // when open site slider animate
-    autoplayTimeout:3000, // animate every 3s
+    autoplayTimeout:2000, // animate every 3s
     autoplayHoverPause:true, // when hover by mouse slider stop 
     dots: false,
     navSpeed: 700,
-    navText: ['',''],
+    navText: [`<i class="fa-solid fa-chevron-right text-main"></i>`, `<i class="fa-solid fa-chevron-left text-main"></i>`],
     items:1,
     nav: true
   }
@@ -63,11 +63,11 @@ export class HomeComponent implements OnInit, OnDestroy{
     pullDrag: false,
     rtl:true,
     autoplay:true, // when open site slider animate
-    autoplayTimeout:3000, // animate every 3s
+    autoplayTimeout:2000, // animate every 3s
     autoplayHoverPause:true, // when hover by mouse slider stop 
     dots: false,
     navSpeed: 700,
-    navText: [`<i class="fa-solid fa-chevron-left text-main"></i>`, `<i class="fa-solid fa-chevron-right text-main"></i>`],
+    navText: [`<i class="fa-solid fa-chevron-right text-main"></i>`, `<i class="fa-solid fa-chevron-left text-main"></i>`],
     responsive: {
       0: {
         items: 1
@@ -86,6 +86,11 @@ export class HomeComponent implements OnInit, OnDestroy{
   }
 
   ngOnInit(): void {
+
+    const savedWishlist = localStorage.getItem('wishlist');
+    if (savedWishlist) {
+      this.wishlist = JSON.parse(savedWishlist);
+    }
 
     // this._NgxSpinnerService.show('loading-3')
     this._CategoriesService.getAllCategories().subscribe({
@@ -140,9 +145,11 @@ export class HomeComponent implements OnInit, OnDestroy{
         this._ToastrService.error(err.message , 'FrechCart') 
       }
     })
-  }
 
+    console.log(`Product ${id} added to wishlist`);
+  }
   wishlist: { [key: string]: boolean } = {};
+
   toggleWishList(id: string): void {
     this.wishlist[id] = !this.wishlist[id];
     if (this.wishlist[id]) {
@@ -150,6 +157,9 @@ export class HomeComponent implements OnInit, OnDestroy{
     } else {
       this.removeFromWishList(id);
     }
+    
+    // Save the updated wishlist to localStorage
+    localStorage.setItem('wishlist', JSON.stringify(this.wishlist));
   }
 
   removeFromWishList(id: string): void {
@@ -162,5 +172,7 @@ export class HomeComponent implements OnInit, OnDestroy{
         console.log(err);
       },
     });
+
+    console.log(`Product ${id} removed from wishlist`);
   }
 }

@@ -31,6 +31,11 @@ export class ProductComponent implements OnInit, OnDestroy{
   text:string = "";
 
   ngOnInit(): void {
+
+    const savedWishlist = localStorage.getItem('wishlist');
+    if (savedWishlist) {
+      this.wishlist = JSON.parse(savedWishlist);
+    }
       // call api
       this.getAllProductSub = this._ProductsService.getAllProducts().subscribe({
         next:(res)=>{
@@ -63,40 +68,50 @@ addCart(id: string): void {
   }
 }
 
+
 wishlist: { [key: string]: boolean } = {};
 
-  toggleWishList(id: string): void {
-    this.wishlist[id] = !this.wishlist[id];
-    if (this.wishlist[id]) {
-      this.addToWishList(id);
-    } else {
-      this.removeFromWishList(id);
-    }
-  }
-
-  removeFromWishList(id: string): void {
-    this._WishListService.removeProductFromWishList(id).subscribe({
-      next: (res) => {
-        console.log(res);
-        this._ToastrService.success(res.message , 'FrechCart')
-      },
-      error: (err) => {
-        console.log(err);
-      },
-    });
-  }
 
 addToWishList(id:string):void{
   this._WishListService.addProductToWishList(id).subscribe({
     next:(res)=>{
       console.log(res)
-      this._ToastrService.success(res.message, 'FrechCart')
+      this._ToastrService.success(res.message, 'FrechCart');
     },
     error:(err)=>{
       console.log(err)
-      this._ToastrService.error(err.message, 'FrechCart')
+      this._ToastrService.error(err.message , 'FrechCart') 
     }
   })
+
+  console.log(`Product ${id} added to wishlist`);
+}
+
+
+toggleWishList(id: string): void {
+  this.wishlist[id] = !this.wishlist[id];
+  if (this.wishlist[id]) {
+    this.addToWishList(id);
+  } else {
+    this.removeFromWishList(id);
+  }
+  
+  // Save the updated wishlist to localStorage
+  localStorage.setItem('wishlist', JSON.stringify(this.wishlist));
+}
+
+removeFromWishList(id: string): void {
+  this._WishListService.removeProductFromWishList(id).subscribe({
+    next: (res) => {
+      console.log(res);
+      this._ToastrService.success(res.message , 'FrechCart')
+    },
+    error: (err) => {
+      console.log(err);
+    },
+  });
+
+  console.log(`Product ${id} removed from wishlist`);
 }
 
 

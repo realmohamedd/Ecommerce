@@ -3,29 +3,29 @@
         <div class="col-md-10">
             <div>
 
-                <owl-carousel-o [options]="customOptionsMain">
+                <owl-carousel-o [options]="customOptionsMain" >
                     <ng-template carouselSlide>
-                        <img src="../../../assets/images/slider-image-1.jpeg" class="w-100" height="300px" alt="">
+                        <img src="../../../assets/images/slider-image-1.jpeg" class="w-100 cursor-pointer" height="300px" alt="">
 
                     </ng-template>  
                     <ng-template carouselSlide>
-                        <img src="../../../assets/images/slider-image-2.jpeg" class="w-100" height="300px" alt="">
+                        <img src="../../../assets/images/slider-image-2.jpeg" class="w-100 cursor-pointer" height="300px" alt="">
                         
                     </ng-template>
                     <ng-template carouselSlide>
-                        <img src="../../../assets/images/slider-image-3.jpeg" class="w-100" height="300px" alt="">
+                        <img src="../../../assets/images/slider-image-3.jpeg" class="w-100 cursor-pointer" height="300px" alt="">
                         
                     </ng-template>
                     <ng-template carouselSlide>
-                        <img src="../../../assets/images/blog-img-2.jpeg" class="w-100" height="300px" alt="">
+                        <img src="../../../assets/images/blog-img-2.jpeg" class="w-100 cursor-pointer" height="300px" alt="">
                         
                     </ng-template>
                     <ng-template carouselSlide>
-                        <img src="../../../assets/images/blog-img-1.jpeg" class="w-100" height="300px" alt="">
+                        <img src="../../../assets/images/blog-img-1.jpeg" class="w-100 cursor-pointer " height="300px" alt="">
                         
                     </ng-template>
                     <ng-template carouselSlide>
-                        <img src="../../../assets/images/banner-4.jpeg" class="w-100" height="300px" alt="">
+                        <img src="../../../assets/images/banner-4.jpeg" class="w-100 cursor-pointer" height="300px" alt="">
                         
                     </ng-template>
                   </owl-carousel-o>
@@ -80,14 +80,15 @@
                         </div>
                         <div>
                             <i
-                            class="fa-heart fa-xl cursor-pointer"
-                            [ngClass]="{
-                              'fa-regular': !wishlist[product.id],
-                              'fa-solid text-danger': wishlist[product.id]
-                            }"
-                            (click)="toggleWishList(product.id)"
-                          ></i>
-                        </div>
+                              class="fa-heart fa-xl cursor-pointer"
+                              [ngClass]="{
+                                'fa-regular': !wishlist[product.id],
+                                'fa-solid text-danger': wishlist[product.id]
+                              }"
+                              (click)="toggleWishList(product.id)"
+                            ></i>
+                          </div>
+                          
                        </div>
     
                     <div class="d-flex justify-content-between align-items-center">
