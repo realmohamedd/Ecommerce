@@ -24,8 +24,8 @@
                 <h3 class="h6">{{detailsProduct.category.name}} </h3>
     
                 <div class="d-flex justify-content-between align-items-center">
-                    <span>{{detailsProduct.price}} EGP</span>
-    
+                    
+                    <p>{{ detailsProduct.price | currency:'GBP':'symbol' }}</p>
                     <div>
                         @for (num of [1,2,3,4,5].slice(0 , detailsProduct.ratingsAverage); track $index) {
                             <span> <i class="fas fa-star rating-color"></i> </span>
@@ -39,7 +39,15 @@
                     </div>
                 </div>
     
-                <button class="btn-main w-100">+Add to Cart</button>
+                <button  type="submit" class="btn-main w-100" (click)="addCart(detailsProduct._id)">
+                    +Add to Cart
+                    <!-- {{ isLoading[product._id] ? 'Loading...' : 'Add to Cart' }} -->
+                    @if (isLoading[detailsProduct._id]) {
+                        <span><i class="fas fa-spi fa-spinner"></i></span>
+                    }
+                
+                </button>
+                <!-- <button class="btn-main w-100">+Add to Cart</button> -->
             </div>
         </div>
     </section>

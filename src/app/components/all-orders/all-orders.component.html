@@ -9,7 +9,8 @@
       
       <div class="order-details">
         <div class="order-summary">
-          <p><strong>Total Price:</strong> ${{ order.totalOrderPrice }}</p>
+          <p><strong>Total Price:</strong> {{ order.totalOrderPrice | currency:'GBP':'symbol' }}</p>
+
           <p><strong>Payment:</strong> {{ order.paymentMethodType }}</p>
           <p><strong>Paid:</strong> <span [ngClass]="order.isPaid ? 'status-paid' : 'status-unpaid'">{{ order.isPaid ? 'Yes' : 'No' }}</span></p>
           <p><strong>Delivered:</strong> <span [ngClass]="order.isDelivered ? 'status-delivered' : 'status-pending'">{{ order.isDelivered ? 'Yes' : 'No' }}</span></p>

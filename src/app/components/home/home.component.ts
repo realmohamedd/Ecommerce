@@ -13,13 +13,13 @@ import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { TranslateModule } from '@ngx-translate/core';
 import { WishListService } from '../../core/service/wish-list.service';
-import { NgClass } from '@angular/common';
+import { CurrencyPipe, NgClass } from '@angular/common';
 
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CarouselModule,RouterLink, SearchPipe, FormsModule, TranslateModule,NgClass],
+  imports: [CarouselModule,RouterLink, SearchPipe, FormsModule, TranslateModule,NgClass, CurrencyPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })

@@ -8,14 +8,14 @@ import { RouterLink } from '@angular/router';
 import { SearchPipe } from '../../core/Pipes/search.pipe';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule, NgModel } from '@angular/forms';
-import { NgClass, NgFor, NgIf } from '@angular/common';
+import { CurrencyPipe, NgClass, NgFor, NgIf } from '@angular/common';
 import { WishListService } from '../../core/service/wish-list.service';
 
 @Component({
   selector: 'app-product',
   standalone: true,
   
-  imports: [RouterLink, SearchPipe, TranslateModule, FormsModule,NgIf,NgFor,NgClass],
+  imports: [RouterLink, SearchPipe, TranslateModule, FormsModule,NgIf,NgFor,NgClass, CurrencyPipe],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss'
 })

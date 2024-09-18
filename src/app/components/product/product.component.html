@@ -30,19 +30,13 @@
                    </div>
                     
                     <div class="d-flex justify-content-between align-items-center">
-                        <span>{{product.price}} EGP</span>
-    
+                       
+                        <p>{{ product.price | currency:'GBP' }}</p>
                         <div>
-                            @for (num of [1,2,3,4,5].slice(0 , product.ratingsAverage); track $index) {
-                                <span> <i class="fas fa-star rating-color"></i> </span>
-                            }
-                            @if (product.ratingsAverage % 1 !== 0) {
-                                <i class="fa-solid fa-star-half-stroke rating-color"></i>
-                            }
-                            
-    
-                            <span class="text-muted"> {{product.ratingsAverage}} </span>
+                            <span><i class="fas fa-star rating-color"></i></span>
+                            <span class="text-muted"> {{ product.ratingsAverage }} </span>
                         </div>
+                        
                     </div>
                   </div>
 

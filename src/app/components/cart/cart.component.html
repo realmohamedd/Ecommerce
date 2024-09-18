@@ -19,7 +19,7 @@
                 <div class="col-md-11 d-flex align-items-center justify-content-between">
                     <div>
                         <h3 class="h5"> {{item.product.title}} </h3>
-                        <p class="m-0 text-main">Price: {{item.price}} </p>
+                        <p class="m-0 text-main">Price: {{item.price | currency:'GBP':'symbol'}} </p>
                         <button (click)="removeItem(item.product.id)" class="text-danger cursor-pointer p-0 btn"><i class="fa-solid fa-trash"></i> Remove</button>
                     </div>
 

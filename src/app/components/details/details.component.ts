@@ -4,11 +4,14 @@ import { ProductsService } from '../../core/service/products.service';
 import { Subscription } from 'rxjs';
 import { Iproduct } from '../../core/interfaces/iproduct';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
+import { CartService } from '../../core/service/cart.service';
+import { ToastrService } from 'ngx-toastr';
+import { CurrencyPipe, NgFor, NgIf } from '@angular/common';
 
 @Component({
   selector: 'app-details',
   standalone: true,
-  imports: [CarouselModule],
+  imports: [CarouselModule, CurrencyPipe,NgFor,NgIf],
   templateUrl: './details.component.html',
   styleUrl: './details.component.scss'
 })
@@ -16,6 +19,9 @@ export class DetailsComponent implements OnInit, OnDestroy{
 
   private readonly _ActivatedRoute = inject(ActivatedRoute);
   private readonly _ProductsService = inject(ProductsService);
+  private readonly _CartService =inject(CartService)
+  private readonly _ToastrService =inject(ToastrService)
+
   _getSpecificProducts !:Subscription;
   detailsProduct:Iproduct | null  = null;
 
@@ -25,7 +31,7 @@ export class DetailsComponent implements OnInit, OnDestroy{
     touchDrag: true,
     pullDrag: false,
     autoplay:true, // when open site slider animate
-    autoplayTimeout:3000, // animate every 3s
+    autoplayTimeout:2000, // animate every 3s
     autoplayHoverPause:true, // when hover by mouse slider stop 
     dots: false,
     navSpeed: 700,
@@ -69,7 +75,27 @@ export class DetailsComponent implements OnInit, OnDestroy{
       })
   }
 
+
   ngOnDestroy(): void {
       this._getSpecificProducts?.unsubscribe();
   }
+
+  isLoading: { [productId: string]: boolean } = {};  
+
+addCart(id: string): void {
+  if (!this.isLoading[id]) {  
+    this.isLoading[id] = true; 
+
+    this._CartService.addProductToCart(id).subscribe({
+      next: (res) => {
+        console.log(res);
+        this.isLoading[id] = false;  
+        this._ToastrService.success(res.message, 'FrechCart')
+        this._CartService.cartNumber.set(res.numOfCartItems)
+      }
+
+      
+    });
+  }
+}
 }

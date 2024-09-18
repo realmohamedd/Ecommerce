@@ -2,13 +2,13 @@ import { Component, inject, OnInit } from '@angular/core';
 import { OrderService } from '../../core/service/order.service';
 import { AuthService } from '../../core/service/auth.service';
 import { IAllorder } from '../../core/inerfaces/i-allorder';
-import { DatePipe, NgClass, NgFor, NgIf } from '@angular/common';
+import { CurrencyPipe, DatePipe, NgClass, NgFor, NgIf } from '@angular/common';
 
 
 @Component({
   selector: 'app-all-orders',
   standalone: true,
-  imports: [NgFor,NgIf,NgClass, DatePipe],
+  imports: [NgFor,NgIf,NgClass, DatePipe, CurrencyPipe],
   templateUrl: './all-orders.component.html',
   styleUrls: ['./all-orders.component.scss']
 })
