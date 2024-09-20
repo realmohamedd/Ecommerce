@@ -39,6 +39,7 @@ export class WishlistComponent implements OnInit{
       next: (res) => {
         console.log(res);
         this.wishListDetails = this.wishListDetails.filter(item => item.id !== id);
+        this._WishListService.cartNumberWish.set(res.data.length)
       },
       error: (err) => {
         console.log(err);

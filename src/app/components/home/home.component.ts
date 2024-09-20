@@ -139,6 +139,7 @@ export class HomeComponent implements OnInit, OnDestroy{
       next:(res)=>{
         console.log(res)
         this._ToastrService.success(res.message, 'FrechCart');
+        this._WishListService.cartNumberWish.set(res.data.length);
       },
       error:(err)=>{
         console.log(err)
@@ -166,7 +167,9 @@ export class HomeComponent implements OnInit, OnDestroy{
     this._WishListService.removeProductFromWishList(id).subscribe({
       next: (res) => {
         console.log(res);
-        this._ToastrService.success(res.message , 'FrechCart')
+        
+        this._ToastrService.success(res.message , 'FrechCart');
+        this._WishListService.cartNumberWish.set(res.data.length);
       },
       error: (err) => {
         console.log(err);

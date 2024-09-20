@@ -77,6 +77,7 @@ addToWishList(id:string):void{
     next:(res)=>{
       console.log(res)
       this._ToastrService.success(res.message, 'FrechCart');
+      this._WishListService.cartNumberWish.set(res.data.length);
     },
     error:(err)=>{
       console.log(err)
@@ -104,7 +105,8 @@ removeFromWishList(id: string): void {
   this._WishListService.removeProductFromWishList(id).subscribe({
     next: (res) => {
       console.log(res);
-      this._ToastrService.success(res.message , 'FrechCart')
+      this._ToastrService.success(res.message , 'FrechCart');
+      this._WishListService.cartNumberWish.set(res.data.length);
     },
     error: (err) => {
       console.log(err);

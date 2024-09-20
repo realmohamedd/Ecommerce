@@ -23,7 +23,7 @@
             <a class="nav-link" routerLinkActive="active-link" routerLink="brands">{{"navbar.Brands" | translate}}</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLinkActive="active-link" routerLink="wishlist">{{"navbar.WishList" | translate}}</a>
+            <a class="nav-link" routerLinkActive="active-link" routerLink="allorders">{{"navbar.My Orders" | translate}}</a>
           </li>
         </ul>
         <ul class="navbar-nav ">
@@ -60,7 +60,13 @@
               <li class="nav-item">
                 <a class="nav-link position-relative" routerLinkActive="active-link"  routerLink="cart">
                   <i class="fa-solid fa-cart-shopping fa-2xl"></i>
-                  <span class="badge bg-info position-absolute top-0 start-0"> {{countNumber()}} </span>
+                  <span class="badge bg-info position-absolute top-0 start-0"> {{countNumberCart()}} </span>
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link cursor-pointer position-relative" routerLinkActive="active-link"  routerLink="wishlist">
+                  <i class="fa-solid fa-heart fa-2xl"></i>
+                  <span class="badge bg-info position-absolute top-0 start-0"> {{countNumberWishList()}} </span>
                 </a>
               </li>
               <li class="nav-item ">

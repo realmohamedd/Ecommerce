@@ -5,6 +5,7 @@ import { CartService } from '../../core/service/cart.service';
 import { NgIf } from '@angular/common';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { MytranslateService } from '../../core/service/mytranslate.service';
+import { WishListService } from '../../core/service/wish-list.service';
 
 @Component({
   selector: 'app-nav-blank',
@@ -19,20 +20,30 @@ export class NavBlankComponent implements OnInit{
   readonly _MytranslateService= inject(MytranslateService)
   readonly _TranslateService= inject(TranslateService)
   readonly _CartService= inject(CartService)
-
+  readonly _WishListService = inject(WishListService)
   
-  countNumber:Signal<number> = computed( ()=> this._CartService.cartNumber())
+  countNumberCart:Signal<number> = computed( ()=> this._CartService.cartNumber())
+  countNumberWishList:Signal<number> = computed( ()=> this._WishListService.cartNumberWish())
+
 
   ngOnInit(): void {
 
 
     this._CartService.getProductsCart().subscribe({
       next:(res)=>{
+        console.log(res)
         this._CartService.cartNumber.set(res.numOfCartItems)
       }
     })
 
-
+    
+    this._WishListService.getProductsWishList().subscribe({
+      next:(res)=>{
+        const wishlistCount = res.data.length;
+        console.log(res)
+        this._WishListService.cartNumberWish.set(wishlistCount)
+      }
+    })
       
   }
   
